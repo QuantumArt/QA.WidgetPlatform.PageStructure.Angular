@@ -1,5 +1,5 @@
 {
-    "name": "qa-engine",
+    "name": "qa-engine-page-structure-angular",
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",

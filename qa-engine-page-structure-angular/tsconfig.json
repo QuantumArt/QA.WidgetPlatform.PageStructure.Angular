@@ -4,7 +4,6 @@
     "compilerOptions": {
         "paths": {
             "@quantumart/qa-engine-page-structure-angular": [
-                "dist/quantumart/qa-engine-page-structure-angular/quantumart-qa-engine-page-structure-angular",
                 "dist/quantumart/qa-engine-page-structure-angular"
             ]
         },
