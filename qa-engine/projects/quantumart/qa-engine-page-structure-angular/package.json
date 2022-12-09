@@ -1,6 +1,7 @@
 {
     "name": "@quantumart/qa-engine-page-structure-angular",
-    "version": "0.0.1",
+    "author": "Quantum Art",
+    "version": "0.1.0",
     "peerDependencies": {
         "@angular/common": "^13.1.0",
         "@angular/core": "^13.1.0",

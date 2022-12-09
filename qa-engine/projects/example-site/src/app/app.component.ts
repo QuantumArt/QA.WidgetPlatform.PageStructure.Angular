@@ -11,7 +11,7 @@ interface RouteOutletActivateEvent {
     templateUrl: './app.component.html'
 })
 export class AppComponent {
-    public title = 'qa-demosite';
+    public title = 'example-site';
     public nodeId$ = new Subject<number>();
 
     private readonly activatedRoute$ = new Subject<ActivatedRouteSnapshot>();

@@ -44,3 +44,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/projects/quantumart/qa-engine-page-structure-angular/node_modules/
