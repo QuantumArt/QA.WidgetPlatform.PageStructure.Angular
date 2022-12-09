@@ -1,0 +1,16 @@
+{
+    "name": "@quantumart/qa-engine-page-structure-angular",
+    "version": "0.0.1",
+    "peerDependencies": {
+        "@angular/common": "^13.1.0",
+        "@angular/core": "^13.1.0",
+        "@angular/platform-browser": "^13.1.0",
+        "@angular/router": "^13.1.0",
+        "camelcase": "^7.0.0",
+        "ngx-dynamic-hooks": "^2.0.3",
+        "rxjs": "^7.4.0"
+    },
+    "dependencies": {
+        "tslib": "^2.3.0"
+    }
+}

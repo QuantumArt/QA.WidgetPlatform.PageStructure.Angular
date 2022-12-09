@@ -1,0 +1,7 @@
+{
+    "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../../dist/quantumart/qa-engine-page-structure-angular",
+    "lib": {
+        "entryFile": "src/public-api.ts"
+    }
+}
