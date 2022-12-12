@@ -53,7 +53,7 @@ export class SiteStructureService {
                     params: new HttpParams({
                         fromObject: {
                             dnsName: new URL(this.baseUrlService.getBaseUrl()).host,
-                            fields: ['Mode', 'RedirectTo']
+                            fields: ['Mode', 'RedirectTo', 'IsVisible', 'IndexOrder', 'Title']
                         }
                     })
                 })

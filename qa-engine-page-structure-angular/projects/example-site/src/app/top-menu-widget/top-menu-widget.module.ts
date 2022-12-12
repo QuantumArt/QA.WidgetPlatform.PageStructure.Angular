@@ -4,9 +4,9 @@ import { QaEnginePageStructureModule } from '@quantumart/qa-engine-page-structur
 import { TopMenuWidgetComponent } from './top-menu-widget.component';
 
 @NgModule({
-    imports: [CommonModule, QaEnginePageStructureModule],
-    declarations: [TopMenuWidgetComponent],
-    exports: [TopMenuWidgetComponent]
+  imports: [CommonModule, QaEnginePageStructureModule],
+  declarations: [TopMenuWidgetComponent],
+  exports: [TopMenuWidgetComponent]
 })
 export class TopMenuWidgetModule {
 }
