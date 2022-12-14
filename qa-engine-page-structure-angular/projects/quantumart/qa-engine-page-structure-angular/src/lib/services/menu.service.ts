@@ -5,8 +5,6 @@ import { map } from 'rxjs/operators';
 import { trim } from '../utils';
 import { SiteNodeApiModel, SiteRedirect, SiteStructureService } from './site-structure.service';
 
-const MENU_DEEP = 3;
-
 export interface MenuElement {
     id: number;
     alias: string;
@@ -25,13 +23,13 @@ export class MenuService {
     ) {
     }
 
-    public buildMenu(): Observable<MenuElement> {
+    public buildMenu(deep: number): Observable<MenuElement> {
         return this.siteStructureService.getSiteStructure().pipe(
             map(({ root, redirects }) => this.buildRecursive(
                 { ...root, alias: '' },
                 '/',
                 this.router.config,
-                MENU_DEEP,
+                deep,
                 redirects,
             ))
         );

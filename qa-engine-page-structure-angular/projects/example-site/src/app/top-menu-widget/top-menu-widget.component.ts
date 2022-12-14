@@ -14,7 +14,7 @@ export interface TopMenuWidgetDetails extends WidgetDetails {
 export class TopMenuWidgetComponent {
   @Input() public widget!: TopMenuWidgetDetails;
 
-  public items$ = this.menuService.buildMenu().pipe(map(({ children }) => children));
+  public items$ = this.menuService.buildMenu(3).pipe(map(({ children }) => children));
 
   constructor(private readonly menuService: MenuService) {
   }
