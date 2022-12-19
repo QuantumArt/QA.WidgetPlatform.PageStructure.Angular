@@ -35,16 +35,19 @@ export class RoutingService {
 
     private buildRoutes(routeDescriptors: RouteDescriptor[]): Routes {
         const pagesRoutes = this.createPagesRoutesMap();
-        const routes = routeDescriptors.map(descriptor => this.createRoute(descriptor, pagesRoutes));
+        const routes = routeDescriptors
+            .map(descriptor => this.createRoute(descriptor, pagesRoutes))
+            .filter(Boolean);
+
         routes.push({
             path: '**',
             component: NotFoundComponent
         });
 
-        return routes;
+        return routes as Route[];
     }
 
-    private createRoute(routeDescriptor: RouteDescriptor, pagesRoutes: Map<string, Route>): Route {
+    private createRoute(routeDescriptor: RouteDescriptor, pagesRoutes: Map<string, Route>): Route | null {
         if (routeDescriptor.redirectTo) {
             return {
                 ...routeDescriptor,
@@ -53,13 +56,19 @@ export class RoutingService {
 
         let pageRoute = pagesRoutes.get(routeDescriptor.data.nodeType);
         if (!pageRoute) {
-            pageRoute = pagesRoutes.get('legacy_page');
+            return null;
         }
 
-        return {
+        const route = {
             ...pageRoute,
             ...routeDescriptor,
         };
+
+        if (pageRoute.pathMatch) {
+            route.pathMatch = pageRoute.pathMatch;
+        }
+
+        return route;
     }
 
     private createPagesRoutesMap(): Map<string, Route> {
