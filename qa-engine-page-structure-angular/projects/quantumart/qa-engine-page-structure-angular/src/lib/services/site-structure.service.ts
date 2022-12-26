@@ -1,6 +1,6 @@
 ﻿import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { WIDGET_PLATFORM_API_URL } from '../public-api';
 import { SiteNodeDetails } from './site-node.service';
@@ -36,7 +36,19 @@ export interface SiteNodeApiModel {
     providedIn: 'root'
 })
 export class SiteStructureService {
-    private siteStructure$?: Observable<SiteStructure>;
+    private readonly siteStructure$ = this.httpClient
+        .get<SiteNodeApiModel>(`${this.widgetPlatformApiUrl}/Site/structure`, {
+            params: new HttpParams({
+                fromObject: {
+                    dnsName: new URL(this.baseUrlService.getBaseUrl()).host,
+                    fields: ['Mode', 'RedirectTo', 'IsVisible', 'IndexOrder', 'Title']
+                }
+            })
+        })
+        .pipe(
+            map(root => ({ root, redirects: this.redirectService.buildRedirectsMap(root) })),
+            shareReplay(1)
+        );
 
     constructor(
         private readonly httpClient: HttpClient,
@@ -47,22 +59,6 @@ export class SiteStructureService {
     }
 
     public getSiteStructure(): Observable<SiteStructure> {
-        if (!this.siteStructure$) {
-            this.siteStructure$ = this.httpClient
-                .get<SiteNodeApiModel>(`${this.widgetPlatformApiUrl}/Site/structure`, {
-                    params: new HttpParams({
-                        fromObject: {
-                            dnsName: new URL(this.baseUrlService.getBaseUrl()).host,
-                            fields: ['Mode', 'RedirectTo', 'IsVisible', 'IndexOrder', 'Title']
-                        }
-                    })
-                })
-                .pipe(
-                    map(root => ({ root, redirects: this.redirectService.buildRedirectsMap(root) })),
-                    share()
-                );
-        }
-
         return this.siteStructure$;
     }
 }
