@@ -1,4 +1,4 @@
-﻿import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, shareReplay } from 'rxjs';
 import { map, share } from 'rxjs/operators';
@@ -36,26 +36,27 @@ export interface SiteNodeApiModel {
     providedIn: 'root'
 })
 export class SiteStructureService {
-    private readonly siteStructure$ = this.httpClient
-        .get<SiteNodeApiModel>(`${this.widgetPlatformApiUrl}/Site/structure`, {
-            params: new HttpParams({
-                fromObject: {
-                    dnsName: new URL(this.baseUrlService.getBaseUrl()).host,
-                    fields: ['Mode', 'RedirectTo', 'IsVisible', 'IndexOrder', 'Title']
-                }
-            })
-        })
-        .pipe(
-            map(root => ({ root, redirects: this.redirectService.buildRedirectsMap(root) })),
-            shareReplay(1)
-        );
+    private readonly siteStructure$: Observable<SiteStructure>;
 
     constructor(
-        private readonly httpClient: HttpClient,
-        private readonly baseUrlService: BaseUrlService,
-        private readonly redirectService: RedirectService,
-        @Inject(WIDGET_PLATFORM_API_URL) private readonly widgetPlatformApiUrl: string,
+        httpClient: HttpClient,
+        baseUrlService: BaseUrlService,
+        redirectService: RedirectService,
+        @Inject(WIDGET_PLATFORM_API_URL) widgetPlatformApiUrl: string,
     ) {
+        this.siteStructure$ = httpClient
+            .get<SiteNodeApiModel>(`${widgetPlatformApiUrl}/Site/structure`, {
+                params: new HttpParams({
+                    fromObject: {
+                        dnsName: new URL(baseUrlService.getBaseUrl()).host,
+                        fields: ['Mode', 'RedirectTo', 'IsVisible', 'IndexOrder', 'Title']
+                    }
+                })
+            })
+            .pipe(
+                map(root => ({ root, redirects: redirectService.buildRedirectsMap(root) })),
+                shareReplay(1)
+            );
     }
 
     public getSiteStructure(): Observable<SiteStructure> {

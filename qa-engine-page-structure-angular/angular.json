@@ -145,6 +145,5 @@
                 }
             }
         }
-    },
-    "defaultProject": "@quantumart/qa-engine-page-structure-angular"
+    }
 }

@@ -50,7 +50,7 @@ export class RoutingService {
     private createRoute(routeDescriptor: RouteDescriptor, pagesRoutes: Map<string, Route>): Route | null {
         if (routeDescriptor.redirectTo) {
             return {
-                ...routeDescriptor,
+                ...(routeDescriptor as Route),
             };
         }
 
@@ -68,7 +68,7 @@ export class RoutingService {
             route.pathMatch = pageRoute.pathMatch;
         }
 
-        return route;
+        return route as Route;
     }
 
     private createPagesRoutesMap(): Map<string, Route> {

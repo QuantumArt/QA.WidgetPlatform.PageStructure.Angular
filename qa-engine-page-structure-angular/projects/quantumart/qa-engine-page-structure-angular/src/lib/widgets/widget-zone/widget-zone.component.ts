@@ -3,7 +3,6 @@ import {
     ChangeDetectorRef,
     Component,
     ComponentRef,
-    ElementRef,
     Inject,
     Input,
     OnDestroy,
@@ -60,7 +59,6 @@ export class WidgetZoneComponent implements OnInit, OnDestroy {
         private readonly widgetService: WidgetService,
         private readonly filterService: WidgetFilterService,
         private readonly router: Router,
-        private readonly elementRef: ElementRef<Element>,
         private readonly cdr: ChangeDetectorRef,
     ) {
     }

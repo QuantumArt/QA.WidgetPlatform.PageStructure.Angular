@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { SiteNodeService } from '../../services';
 import { NodeDetails } from '../../widgets';
@@ -7,7 +7,7 @@ import { NodeDetails } from '../../widgets';
 @Injectable({
     providedIn: 'root',
 })
-export class PageDetailsResolver implements Resolve<NodeDetails> {
+export class PageDetailsResolver {
     constructor(private readonly pageService: SiteNodeService) {
     }
 

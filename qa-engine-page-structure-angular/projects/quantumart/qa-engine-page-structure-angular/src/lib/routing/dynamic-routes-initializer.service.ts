@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
-import { BaseUrlService, SiteStructureService } from '../services';
-import { RoutingService } from './routing.service';
+import { SiteStructureService } from '../services';
 import { buildRoutes } from './routing.builder';
+import { RoutingService } from './routing.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class DynamicRoutesInitializer implements CanActivate {
+export class DynamicRoutesInitializer {
     constructor(
-        private readonly baseUrlService: BaseUrlService,
         private readonly siteStructureService: SiteStructureService,
         private readonly routingService: RoutingService,
         private readonly router: Router,

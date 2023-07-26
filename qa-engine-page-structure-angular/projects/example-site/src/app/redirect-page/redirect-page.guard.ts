@@ -1,12 +1,11 @@
-﻿import { Inject, Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
+import { Inject, Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { WINDOW } from '../public-api';
-import { isAbsoluteUrl } from '../../../../quantumart/qa-engine-page-structure-angular/src/lib/utils';
 
 @Injectable({
     providedIn: 'root',
 })
-export class RedirectPageGuard implements CanActivate {
+export class RedirectPageGuard {
     constructor(@Inject(WINDOW) private readonly windowRef: Window) {
     }
 

@@ -1,18 +1,18 @@
 {
     "name": "@quantumart/qa-engine-page-structure-angular",
     "author": "Quantum Art",
-    "version": "0.3.3",
+    "version": "1.0.0-beta",
     "license": "MIT",
     "peerDependencies": {
-        "@angular/common": "^13.3.10",
-        "@angular/core": "^13.3.10",
-        "@angular/platform-browser": "^13.3.10",
-        "@angular/router": "^13.3.10",
+        "@angular/common": "~16.1.6",
+        "@angular/core": "~16.1.6",
+        "@angular/platform-browser": "~16.1.6",
+        "@angular/router": "~16.1.6",
         "camelcase": "^7.0.0",
-        "ngx-dynamic-hooks": "^2.0.3",
+        "ngx-dynamic-hooks": "^2.1.0",
         "rxjs": "^7.4.0"
     },
     "dependencies": {
-        "tslib": "^2.3.0"
+        "tslib": "^2.6.1"
     }
 }
